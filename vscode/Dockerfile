@@ -1,7 +1,7 @@
 FROM fedora:28
 MAINTAINER petter@jebus.nu
 LABEL RUN='docker run --rm -it --name vscode -v /home/${USER}:/home/developer -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=${DISPLAY} --security-opt label=type:container_runtime_t pabrahamsson/vscode'
-ARG VSCODE_VERSION=1.25.1-1531323952
+ARG VSCODE_VERSION=1.27.1-1536226249
 RUN dnf install -y git zsh tmux libX11-xcb which && \
     dnf install -y https://packages.microsoft.com/yumrepos/vscode/code-${VSCODE_VERSION}.el7.x86_64.rpm && \
     dnf clean all && \
