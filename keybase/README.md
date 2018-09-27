@@ -1,5 +1,6 @@
 ## Keybase container
 ([https://keybase.io](https://keybase.io))
+[![Docker Repository on Quay](https://quay.io/repository/pabrahamsson/keybase/status?token=7981537d-f610-4289-97d9-55e5432d9fa8 "Docker Repository on Quay")](https://quay.io/repository/pabrahamsson/keybase)
 
 ### Build
 1. `git clone https://github.com/pabrhamsson/dockerfiles`
