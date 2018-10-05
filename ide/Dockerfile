@@ -1,6 +1,6 @@
 FROM fedora:28
 MAINTAINER petter@jebus.nu
-LABEL RUN='docker run --rm -it --name vim -v /home/${USER}:/home/developer -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=${DISPLAY} --security-opt label=type:container_runtime_t pabrahamsson/vim'
+LABEL RUN='docker run -it --rm --name vim -w $(pwd|sed "s/$(whoami)/developer/") --cpus 0.3 -m 32 -v /home/${USER}:/home/developer -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=${DISPLAY} --security-opt label=type:container_runtime_t quay.io/pabrahamsson/vim'
 RUN dnf install -y git zsh tmux && \
     BUILD_DEPS=$(dnf groups install -y 'Development Tools'|grep Installing|awk '{print $3}') && \
     DEPS=$(dnf install -y ncurses-devel|grep Installing|awk '{print $3}') && \
@@ -22,4 +22,4 @@ ENV HOME /home/developer
 ENV LANG en_US.UTF-8
 ENV TERM xterm-256color
 WORKDIR /home/developer
-ENTRYPOINT [ "/bin/tmux" ]
+ENTRYPOINT ["vim"]
