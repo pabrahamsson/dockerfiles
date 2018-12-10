@@ -1,8 +1,9 @@
 FROM fedora:29
 MAINTAINER petter@jebus.nu
+ARG RAMBOX_VERSION=0.6.3
 LABEL RUN='docker run --rm -it --name rambox -v /home/${USER}:/home/rambox -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/shm:/dev/shm -e DISPLAY=${DISPLAY} --device /dev/snd -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native -e TZ=America/New_York --group-add $(getent group audio | cut -d: -f3) --security-opt label=type:container_runtime_t quay.io/pabrahamsson/rambox'
 RUN INSTALL_PKGS="alsa-utils pulseaudio GConf2 gtk3 nss libXScrnSaver" && \
-    dnf install -y $INSTALL_PKGS https://github.com/ramboxapp/community-edition/releases/download/0.6.2/Rambox-0.6.2-linux-x86_64.rpm && \
+    dnf install -y $INSTALL_PKGS https://github.com/ramboxapp/community-edition/releases/download/${RAMBOX_VERSION}/Rambox-${RAMBOX_VERSION}-linux-x86_64.rpm && \
     dnf clean all && \
     export uid=1000 gid=1000 && \
     mkdir -p /home/rambox && \
